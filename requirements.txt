@@ -1,0 +1,8 @@
+tensorflow
+opencv-python==4.11.0.86
+numpy
+matplotlib
+scikit-learn
+pillow
+jupyter
+streamlit
