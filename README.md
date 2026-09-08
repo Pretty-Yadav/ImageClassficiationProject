@@ -57,6 +57,17 @@ The full dataset is intentionally excluded from this repository. Keep the local 
 
 The app uses OpenCV YuNet for face detection rather than the older Haar cascade, which reduces false detections on clothing and backgrounds. The detector model is stored in `models/face_detection_yunet_2023mar.onnx`.
 
+## Deploy on Streamlit Community Cloud
+
+1. Push this repository to GitHub, including `app.py`, `models/`, `requirements.txt`, and `runtime.txt`.
+2. Open [share.streamlit.io](https://share.streamlit.io/) and sign in with GitHub.
+3. Select **Create app**, choose `Pretty-Yadav/ImageClassficiationProject`, branch `main`, and file `app.py`.
+4. In **Advanced settings**, choose Python `3.12` if the option is shown, then deploy.
+5. Wait for dependencies to install. The app loads the saved model from `models/gender_cnn.keras`; it does not retrain.
+6. Open the deployed URL and allow camera permission in the browser. The upload tab works without camera permission.
+
+The dependency versions are pinned for the Python 3.12 environment used during development. `opencv-python-headless` is intentional: Streamlit uses the browser camera and does not need an OpenCV desktop window. Do not upload `data/` or a virtual environment; the deployed app only needs the saved model and detector files.
+
 ## Webcam
 
 The recommended webcam demo is the Streamlit app: run `streamlit run app.py` and allow the browser to use the camera. It captures a frame, detects faces, applies the saved CNN to each RGB face crop, and displays the annotated result. Browser camera access works even when the Python server cannot directly see a local `/dev/video0` device.
